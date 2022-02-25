@@ -9,9 +9,9 @@ RUN go build -v -o go-demo
 
 
 
-FROM alpine:latest
+FROM alpine:3.12
 MAINTAINER 	Viktor Farcic <viktor@farcic.com>
-RUN apk --no-cache add ca-certificates
+RUN apk update && apk add ca-certificates
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
 
 EXPOSE 8080
