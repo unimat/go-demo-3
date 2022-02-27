@@ -138,7 +138,7 @@ metadata:
   name: api
   namespace: go-demo-3-build
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: api
