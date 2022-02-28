@@ -147,7 +147,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: unimat/go-demo-3:latest
+        image: unimatltd/go-demo-3:latest
         env:
         - name: DB
           value: db
