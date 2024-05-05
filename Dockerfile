@@ -7,8 +7,6 @@ RUN go mod vendor
 RUN go test --cover -v ./... --run UnitTest
 RUN go build -v -o go-demo
 
-
-
 FROM alpine:3.12
 MAINTAINER 	Viktor Farcic <viktor@farcic.com>
 RUN apk update && apk add ca-certificates

@@ -20,17 +20,13 @@ spec:
             name: api
             port:
               number: 8080
-
 ---
-
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: db
   namespace: go-demo-3-build
-
 ---
-
 kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
@@ -40,9 +36,7 @@ rules:
 - apiGroups: [""]
   resources: ["pods"]
   verbs: ["list"]
-
 ---
-
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -55,9 +49,7 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: db
-
 ---
-
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
@@ -115,9 +107,7 @@ spec:
       resources:
         requests:
           storage: 2Gi
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
@@ -129,9 +119,7 @@ spec:
   clusterIP: None
   selector:
     app: db
-
 ---
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -149,7 +137,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: unimatltd/go-demo-3:latest
+        image: unimat/go-demo-3:latest
         env:
         - name: DB
           value: db
@@ -169,9 +157,7 @@ spec:
           requests:
             memory: "10Mi"
             cpu: 0.1
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:

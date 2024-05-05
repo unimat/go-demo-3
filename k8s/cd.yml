@@ -5,6 +5,30 @@ metadata:
   namespace: go-demo-3-build
 spec:
   containers:
+  - name: kubectl
+    image: vfarcic/kubectl
+    command: ["sleep"]
+    args: ["100000"]
+    volumeMounts:
+    - name: workspace
+      mountPath: /workspace
+    workingDir: /workspace
+  # - name: oc
+  #   image: vfarcic/openshift-client
+  #   command: ["sleep"]
+  #   args: ["100000"]
+  #   volumeMounts:
+  #   - name: workspace
+  #     mountPath: /workspace
+  #   workingDir: /workspace
+  - name: golang
+    image: golang:1.12
+    command: ["sleep"]
+    args: ["100000"]
+    volumeMounts:
+    - name: workspace
+      mountPath: /workspace
+    workingDir: /workspace
   - name: docker
     image: docker:18.03-git
     command: ["sleep"]
@@ -14,30 +38,6 @@ spec:
       mountPath: /workspace
     - name: docker-socket
       mountPath: /var/run/docker.sock
-    workingDir: /workspace
-  - name: kubectl
-    image: vfarcic/kubectl
-    command: ["sleep"]
-    args: ["100000"]
-    volumeMounts:
-    - name: workspace
-      mountPath: /workspace
-    workingDir: /workspace
-  - name: oc
-    image: vfarcic/openshift-client
-    command: ["sleep"]
-    args: ["100000"]
-    volumeMounts:
-    - name: workspace
-      mountPath: /workspace
-    workingDir: /workspace
-  - name: golang
-    image: golang:1.12
-    command: ["sleep"]
-    args: ["100000"]
-    volumeMounts:
-    - name: workspace
-      mountPath: /workspace
     workingDir: /workspace
   serviceAccount: build
   volumes:
