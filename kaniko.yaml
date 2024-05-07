@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kaniko
+  namespace: go-demo-3-build
+spec:
+  containers:
+  - name: kaniko
+    image: gcr.io/kaniko-project/executor:latest
+    args: ["--dockerfile=Dockerfile",
+            "--context=git://github.com/GH_USER/go-demo-3.git",
+            "--destination=DH_USER/DH_REPO"]
+    volumeMounts:
+    - name: kaniko-secret
+      mountPath: /kaniko/.docker
+    resources:
+      limits:
+        memory: 300Mi
+        cpu: 0.5
+      requests:
+        memory: 300Mi
+        cpu: 0.5
+  restartPolicy: Never
+  volumes:
+  - name: kaniko-secret
+    secret:
+      secretName: regcred
+      items:
+      - key: .dockerconfigjson 
+        path: config.json

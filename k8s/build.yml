@@ -126,7 +126,7 @@ metadata:
   name: api
   namespace: go-demo-3-build
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: api
@@ -137,7 +137,7 @@ spec:
     spec:
       containers:
       - name: api
-        image: unimat/go-demo-3:latest
+        image: unimatltd/go-demo-3:latest
         env:
         - name: DB
           value: db
